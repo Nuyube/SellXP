@@ -1,6 +1,6 @@
 main: xyz.nuyube.minecraft.sellxp.SellXP
 name: SellXP
-version: 1.0
+version: 1.1
 
 commands:
   sellxp:

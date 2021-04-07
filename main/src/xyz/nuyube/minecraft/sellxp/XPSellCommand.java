@@ -25,8 +25,27 @@ public class XPSellCommand implements CommandExecutor {
             Player p = (Player)sender;
             //Get the player's level
             int TotalEXP = p.getLevel();
+
+            if(TotalEXP < SellXP.LevelThresholdForSell) {
+                p.sendRawMessage("Sorry, but you can't sell your XP right now. You must be at least Level " + SellXP.LevelThresholdForSell);
+                return true;
+            }
+
             //Calculate the XP worth
-            double Worth = Math.pow(TotalEXP, 2);
+            double Worth = 0;
+            //Implement the level threshold for the constant.
+            double ConstantCopy = SellXP.Constant;
+            if(TotalEXP < SellXP.LevelThresholdForConstant) ConstantCopy = 0;
+            if(SellXP.WorthFunctionType.equals("EXPONENTIAL")) {
+                Worth = (Math.pow(TotalEXP, SellXP.Coefficient)) + ConstantCopy; 
+            }
+            else if(SellXP.WorthFunctionType.equals("LINEAR")) {
+                Worth = (SellXP.Coefficient * TotalEXP) + ConstantCopy;
+            }
+            if(Worth < 0) {
+                p.sendRawMessage("The worth of your XP is less than 0, so it's impossible to sell.");
+                return true;
+            }
             //If they're trying to sell their XP
             if(args.length > 0 && args[0].equals("confirm")) {
                 //Check if they have permission
