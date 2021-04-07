@@ -1,0 +1,13 @@
+main: xyz.nuyube.minecraft.sellxp.SellXP
+name: SellXP
+version: 1.0
+
+commands:
+  sellxp:
+    description: Exchanges Minecraft XP for Vault Currency
+    usage: /sellxp (confirm)
+    permission: sellxp.view
+  xpsell:
+    description: Exchanges Minecraft XP for Vault Currency
+    usage: /xpsell (confirm)
+    permission: sellxp.view
