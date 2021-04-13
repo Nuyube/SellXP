@@ -6,7 +6,7 @@
 
   <groupId>xyz.nuyube.minecraft.sellxp</groupId>
   <artifactId>SellXP</artifactId>
-  <version>1.2</version>
+  <version>1.2.1</version>
 
   <name>SellXP</name>
   <packaging>jar</packaging>
@@ -24,8 +24,18 @@
         <id>jitpack.io</id>
         <url>https://jitpack.io</url>
     </repository>
+    <repository>
+        <id>jeff-media-gbr</id>
+        <url>https://repo.jeff-media.de/maven2/</url>
+    </repository>
   </repositories>
   <dependencies>
+    <dependency>
+        <groupId>de.jeff_media</groupId>
+        <artifactId>SpigotUpdateChecker</artifactId>
+        <version>1.0.0</version> <!-- Check on GitHub for the latest version -->
+        <scope>compile</scope>
+    </dependency>
       <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
@@ -42,7 +52,7 @@
 
   <build> 
     <sourceDirectory>
-    main
+    main/src
     </sourceDirectory>
     <resources>
       <resource>
@@ -52,5 +62,30 @@
         </includes>
       </resource>
     </resources>
+    <plugins>
+    <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.1</version>
+            <configuration>
+                <relocations>
+                    <!-- Using the maven-shade-plugin to shade and relocate the UpdateChecker -->
+                    <!-- Replace "your.package" with your plugin's package name -->
+                    <relocation>
+                        <pattern>de.jeff_media.updatechecker</pattern>
+                        <shadedPattern>your.package.updatechecker</shadedPattern>
+                    </relocation>
+                </relocations>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
   </build>
 </project>

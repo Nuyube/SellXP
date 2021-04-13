@@ -1,0 +1,16 @@
+#DO NOT change this value - it's used to figure out how to read this config!
+sellxp-config-version: 1
+
+#Type of worth function
+# LINEAR: Worth = (coefficient)(level) + (constant)
+# EXPONENTIAL: Worth = level^(coefficient) + (constant)
+sellxp-worth-function: EXPONENTIAL
+
+sellxp-worth-coefficient: 2
+sellxp-worth-constant: 0
+
+#A user must be at least this level to get the Constant part of the formula (setting to 0 will allow users to spam /sellxp confirm for infinite money)
+sellxp-constant-level-threshold: 5
+
+#A user must be at least this level to sell their XP
+sellxp-sell-level-threshold: 1
