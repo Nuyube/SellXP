@@ -20,8 +20,8 @@ public final class SellXP extends JavaPlugin {
     //Start our plugin logger
     PluginLogger = getLogger();
     //Check for updates
-    UpdateChecker.init(this, 91031).checkNow(); 
-
+    UpdateChecker.init(this, 91031).checkNow();  
+    
     //Register our sellxp command and its alias
     this.getCommand("sellxp").setExecutor(new XPSellCommand()); 
     //Get the economy

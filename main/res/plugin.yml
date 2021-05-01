@@ -1,13 +1,13 @@
 main: xyz.nuyube.minecraft.sellxp.SellXP
 name: SellXP
-version: 1.2.2
+version: 1.2.3
 api-version: 1.16
 
 commands:
   sellxp:
     aliases: [xpsell, xps]
     description: Exchanges Minecraft XP for Vault Currency
-    usage: /sellxp (confirm)
+    usage: /sellxp [confirm | reload]
     permission: sellxp.view
   
     
