@@ -20,11 +20,6 @@ final class XPSellCommand implements CommandExecutor {
       // Get the player's level
       int playerLevel = player.getLevel();
       Configuration config = Configuration.getInstance();
-      if (playerLevel < config.getLevelForSell()) {
-        player.sendRawMessage("Sorry, but you can't sell your XP right now. You must be at least Level "
-            + config.getLevelForSell() + ".");
-        return true;
-      }
 
       // Calculate the XP worth
       double xpValue = 0;
@@ -49,10 +44,16 @@ final class XPSellCommand implements CommandExecutor {
           player.sendMessage("The economy service is not available.");
           return true;
         }
-        
+
         if (xpValue <= 0) {
           player.sendRawMessage("The worth of your XP is less than or equal to 0, so it's impossible to sell.");
           return true;
+        }
+
+        if (playerLevel < config.getLevelForSell()) {
+          player.sendRawMessage("Sorry, but you can't sell your XP right now. You must be at least Level "
+              +  config.getLevelForSell() + ".");
+          return true; 
         }
 
         // Log the player's transaction
