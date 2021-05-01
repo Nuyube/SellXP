@@ -23,8 +23,7 @@ public final class SellXP extends JavaPlugin {
     UpdateChecker.init(this, 91031).checkNow(); 
 
     //Register our sellxp command and its alias
-    this.getCommand("sellxp").setExecutor(new XPSellCommand());
-    this.getCommand("xpsell").setExecutor(new XPSellCommand());
+    this.getCommand("sellxp").setExecutor(new XPSellCommand()); 
     //Get the economy
     rsp = getServer().getServicesManager().getRegistration(Economy.class);
     //If the economy can't be found, log it.
@@ -34,8 +33,7 @@ public final class SellXP extends JavaPlugin {
       );
     }
     //Else, set the economy.
-    else econ = rsp.getProvider();
-    //ReadConfiguration();
+    else econ = rsp.getProvider(); 
   }
 
   @Override

@@ -65,7 +65,7 @@ final class Configuration {
   }
 
   public static void reload() {
-    instance.init();
+    getInstance().init();
   }
 
   private final void readConfigFile() {
@@ -97,19 +97,24 @@ final class Configuration {
       if (!Keys.getKeyByName(KEY_CONSTANT).isNull()) {
         constant = Keys.getKeyByName(KEY_CONSTANT).asDouble();
       }
+      else constant = 0;
       if (!Keys.getKeyByName(KEY_COEFFICIENT).isNull()) {
         coefficient = Keys.getKeyByName(KEY_COEFFICIENT).asDouble();
       }
+      else coefficient = 2;
       if (!Keys.getKeyByName(KEY_FUNCTION).isNull()) {
         worthFunctionType = Keys.getKeyByName(KEY_FUNCTION).asString();
       }
+      else worthFunctionType = "LINEAR";
       if (!Keys.getKeyByName(KEY_CONSTANT_THRESHOLD).isNull()) {
         LevelThresholdForConstant =
           Keys.getKeyByName(KEY_CONSTANT_THRESHOLD).asInt();
       }
+      else LevelThresholdForConstant = 0;
       if (!Keys.getKeyByName(KEY_SELL_THRESHOLD).isNull()) {
         LevelThresholdForSell = Keys.getKeyByName(KEY_SELL_THRESHOLD).asInt();
       }
+      else LevelThresholdForSell = 0;
     }
     fr.close();
     SellXP.PluginLogger.info(
@@ -132,6 +137,7 @@ final class Configuration {
     if (!DataDirectory.exists() || !ConfigFile.exists()) {
       log("Config does not exist... Writing.", 3);
       writeNewConfigFile();
+      readConfigFile();
     } else {
       log("Config file exists... Reading", 3);
       readConfigFile();
