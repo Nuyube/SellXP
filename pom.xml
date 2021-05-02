@@ -6,7 +6,7 @@
 
   <groupId>xyz.nuyube.minecraft.sellxp</groupId>
   <artifactId>SellXP</artifactId>
-  <version>1.2.3</version>
+  <version>1.2.4</version>
 
   <name>SellXP</name>
   <packaging>jar</packaging>
@@ -59,6 +59,7 @@
         <directory>main/res</directory>
         <includes>
           <include>plugin.yml</include> 
+          <include>messages.yml</include> 
         </includes>
       </resource>
     </resources>
@@ -73,7 +74,7 @@
                     <!-- Replace "your.package" with your plugin's package name -->
                     <relocation>
                         <pattern>de.jeff_media.updatechecker</pattern>
-                        <shadedPattern>your.package.updatechecker</shadedPattern>
+                        <shadedPattern>xyz.nuyube.minecraft.sellxp.updatechecker</shadedPattern>
                     </relocation>
                 </relocations>
             </configuration>

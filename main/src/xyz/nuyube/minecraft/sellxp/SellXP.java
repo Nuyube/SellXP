@@ -13,12 +13,18 @@ public final class SellXP extends JavaPlugin {
   static Logger PluginLogger = null;
   static RegisteredServiceProvider<Economy> rsp = null;
   static Economy econ = null;
-
+private Messages messages;
 
   @Override
-  public void onEnable() {
+  public void onEnable()  {
     //Start our plugin logger
     PluginLogger = getLogger();
+    messages = Messages.getInstance();
+
+    messages.init();
+
+    messages.emitConsole("enabling");
+
     //Check for updates
     UpdateChecker.init(this, 91031).checkNow();  
     
@@ -28,20 +34,24 @@ public final class SellXP extends JavaPlugin {
     rsp = getServer().getServicesManager().getRegistration(Economy.class);
     //If the economy can't be found, log it.
     if (rsp == null) {
-      PluginLogger.severe(
-        "[Nuyube's SellXP] The economy provider could not be found."
-      );
+      messages.emitConsoleSevere("economy-unavailable");
+        //Throw an exception to disable the plugin.
+       rsp.getProvider();
     }
     //Else, set the economy.
     else econ = rsp.getProvider(); 
+    
+    messages.emitConsole("enabled");
   }
 
   @Override
   //We don't actually do anything on disable.
   public void onDisable() {
-    PluginLogger.info("[Nuyube's SellXP] Disabled.");
+    messages.emitConsole("disabling");
+    
     econ = null;
     rsp = null;
+    messages.emitConsole("disabled");
     PluginLogger = null;
   }
 

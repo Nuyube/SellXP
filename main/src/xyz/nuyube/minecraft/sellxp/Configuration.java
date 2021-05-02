@@ -2,22 +2,11 @@ package xyz.nuyube.minecraft.sellxp;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.logging.Logger;
+import java.util.Scanner; 
 import org.bukkit.plugin.java.JavaPlugin;
 
 final class Configuration {
-
-  private static final int LOGGING_LEVEL = 4;
-  private static final Logger logger = JavaPlugin
-    .getPlugin(SellXP.class)
-    .getLogger();
-
-  private final void log(String message, int logLevel) {
-    if (LOGGING_LEVEL >= logLevel) {
-      logger.info(message);
-    }
-  }
+ 
 
   private static final String KEY_FUNCTION =
     "sellxp-worth-function", KEY_COEFFICIENT =
@@ -64,12 +53,14 @@ final class Configuration {
     init();
   }
 
+  private Messages messages = Messages.getInstance();
+
   public static void reload() {
     getInstance().init();
   }
 
   private final void readConfigFile() {
-    log("Reading configuration file", 3);
+    messages.emitConsole("reading-config");
     //Get files
     File DataDirectory = JavaPlugin.getPlugin(SellXP.class).getDataFolder();
     File ConfigFile = new File(DataDirectory.getPath() + "/config.yml");
@@ -78,7 +69,7 @@ final class Configuration {
       //Open our file
       fr = new Scanner(ConfigFile);
     } catch (FileNotFoundException e) {
-      log("Failed to read config file: Not found", 0);
+      messages.emitConsoleSevere("config-not-found");
       return;
     }
     //Get keys that we're looking for
@@ -129,15 +120,17 @@ final class Configuration {
 
   private final void init() {
     //Read our configuration
-    log("Initializing configuration...", 1);
-    File DataDirectory = JavaPlugin.getPlugin(SellXP.class).getDataFolder();
-    File ConfigFile = new File(DataDirectory + "/config.yml");
-    //Log file paths
-    log("Data Directory is " + DataDirectory.getAbsolutePath(), 3);
-    log("Config File is " + ConfigFile.getAbsolutePath(), 3);
+    messages.emitConsole("initializing-config");
+    File DataDirectory ;
+    File ConfigFile;
+
+    DataDirectory = JavaPlugin.getPlugin(SellXP.class).getDataFolder();
+    ConfigFile  = new File(DataDirectory + "/config.yml");
+    
+    
     //If our file or directory doesn't exist,
     if (!DataDirectory.exists() || !ConfigFile.exists()) {
-      log("Config does not exist... Writing.", 3);
+      messages.emitConsole("config-not-exist-writing");
       //Write it
       writeNewConfigFile();
      }

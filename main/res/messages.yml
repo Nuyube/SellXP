@@ -1,0 +1,36 @@
+#Color codes are used with &&, not just &. This is to allow the use of & in the file without escaping.
+#Items in percents are replaced by the function that calls the output.
+
+#Empty messages are not sent.
+
+#miscellaneous
+enabling:
+enabled:
+disabling:
+disabled: Disabled.
+
+#errors
+economy-unavailable: The economy provider could not be found.
+xp-worthless: Sorry, but your XP isn't worth enough to sell. It's worth %WORTH%.
+sell-no-level: Sorry, but you cannot sell your xp - your level is too low. You must be at least Level %LEVELREQ%.
+sell-no-permission: Sorry, but you don't have the &&csellxp.sell&&f permission.
+reload-no-permission: Sorry, but you don't have the &&csellxp.reload&&f permission.
+view-no-permission: Sorry, but you don't have the &&csellxp.view&&f permission.
+unspecified-error: %ERROR%
+
+#config
+config-not-found: Failed to read config. File Not Found.
+reading-config: Reading configuration file
+initializing-config: Initializing configuration...
+config-not-exist-writing: Config does not exist, writing.
+#global output
+reloading-sellxp: Reloading SellXP...
+generic-done: Done.
+
+#console output
+player-selling: Player %PLAYER% sold %LEVEL% levels of XP for $%WORTH%.
+
+#player output
+sale-finished: Sold %LEVEL% levels of XP for $%WORTH%.
+xp-worth: Your XP is worth $%WORTH%.
+use-confirm: Use /sellxp confirm to sell your xp.

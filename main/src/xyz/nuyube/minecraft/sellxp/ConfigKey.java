@@ -15,7 +15,7 @@ final class ConfigKey {
    * @throws NullPointerException
    * If the value is really null
    */
-  public String asString() throws  NullPointerException {
+  public String asString() throws NullPointerException {
     if(isNull()) {
       throw new NullPointerException();
     }
